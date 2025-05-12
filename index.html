@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>XTac FF - Domine o Campo de Batalha!</title>
+    <style>
+        :root {
+            --bg-dark-xtac: #08080a;
+            --bg-section-xtac: #121215;
+            --text-light-xtac: #f0f0f5;
+            --text-muted-xtac: #a0a0b5;
+            --accent-red-xtac: #ff073a;
+            --accent-red-glow-xtac: rgba(255, 7, 58, 0.7);
+            --accent-cyan-xtac: #00f2ea;
+            --font-display-xtac: 'Teko', 'Orbitron', sans-serif;
+            --font-body-xtac: 'Roboto Condensed', 'Rajdhani', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Roboto+Condensed:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body-xtac);
+            background-color: var(--bg-dark-xtac);
+            color: var(--text-light-xtac);
+            line-height: 1.7;
+            overflow-x: hidden; /* Evita scroll horizontal desnecessário */
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container-xtac {
+            width: 100%;
+            max-width: 960px; /* Largura comum para landing pages */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            background: linear-gradient(rgba(13, 13, 15, 0.85), rgba(13, 13, 15, 0.95)), 
+                        url('https://via.placeholder.com/1200x600.png/FF073A/000000?text=XTac+FF+Background') no-repeat center center/cover; /* Placeholder de imagem de fundo */
+            padding: 80px 20px 60px;
+            text-align: center;
+            color: var(--text-light-xtac);
+            position: relative;
+            overflow: hidden;
+        }
+         .hero-section::before { /* Efeito de scanline sutil */
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(transparent, transparent 2px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 4px);
+            opacity: 0.5; pointer-events: none;
+        }
+
+
+        .hero-title {
+            font-family: var(--font-display-xtac);
+            font-size: 3.5em; /* Maior */
+            color: var(--accent-red-xtac);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px var(--accent-red-glow-xtac), 0 0 5px #000;
+            animation: titleGlow 2s infinite alternate;
+        }
+        @keyframes titleGlow {
+            from { text-shadow: 0 0 10px var(--accent-red-glow-xtac), 0 0 3px #000; }
+            to { text-shadow: 0 0 20px var(--accent-red-glow-xtac), 0 0 8px var(--accent-red-glow-xtac), 0 0 5px #000; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.3em;
+            color: var(--text-secondary-xtac, #c0c0d0); /* Cor secundária para subtítulo */
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--accent-red-xtac);
+            color: var(--text-light-xtac);
+            font-family: var(--font-display-xtac);
+            font-size: 1.4em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 2px solid var(--accent-red-dark-xtac, #c4001d);
+            box-shadow: 0 0 15px var(--accent-red-glow-xtac), inset 0 0 8px rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #ff3c6a;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 5px 25px var(--accent-red-glow-xtac), inset 0 0 10px rgba(255,255,255,0.3);
+        }
+        .download-button .icon { margin-right: 10px; }
+
+
+        /* --- Features Section --- */
+        .features-section {
+            padding: 60px 0;
+            background-color: var(--bg-section-xtac);
+        }
+        .section-title {
+            text-align: center;
+            font-family: var(--font-display-xtac);
+            font-size: 2.5em;
+            color: var(--accent-cyan-xtac);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px var(--accent-cyan-glow-xtac);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background-color: var(--bg-element);
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 242, 234, 0.15);
+            border-left: 3px solid var(--accent-cyan-xtac);
+        }
+        .feature-card .icon {
+            font-size: 2.5em;
+            color: var(--accent-cyan-xtac);
+            margin-bottom: 15px;
+            display: block;
+        }
+        .feature-card h3 {
+            font-family: var(--font-display-xtac);
+            font-size: 1.4em;
+            color: var(--text-light-xtac);
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            font-size: 0.95em;
+            color: var(--text-muted-xtac);
+        }
+
+        /* --- Testimonials Section --- */
+        .testimonials-section {
+            padding: 60px 0;
+            /* background-color: var(--bg-dark-xtac); */ /* Já é o padrão do body */
+        }
+        /* Reutilizando .section-title, mas talvez com cor primária */
+        .testimonials-section .section-title { color: var(--accent-red-xtac); text-shadow: 0 0 10px var(--accent-red-glow-xtac);}
+
+        .testimonial-card { /* Similar ao feature-card mas com acento primário */
+            background-color: var(--bg-element);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+         .testimonial-card:hover {
+            border-left: 3px solid var(--accent-red-xtac);
+        }
+        .testimonial-card q {
+            display: block;
+            font-style: italic;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            color: var(--text-secondary-xtac, #c0c0d0);
+            quotes: "“" "”";
+        }
+        .testimonial-card q::before { content: open-quote; }
+        .testimonial-card q::after { content: close-quote; }
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--accent-red-xtac);
+            font-family: var(--font-display-xtac);
+        }
+
+
+        /* --- Footer --- */
+        footer {
+            padding: 30px 20px;
+            text-align: center;
+            background-color: var(--bg-element);
+            border-top: 1px solid var(--border-accent);
+            font-size: 0.9em;
+            color: var(--text-muted-xtac);
+        }
+        footer p { margin-bottom: 5px; }
+        footer a { color: var(--accent-cyan-xtac); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+    </style>
+</head>
+<body>
+    <header class="hero-section">
+        <div class="container-xtac">
+            <h1 class="hero-title">XTac FF</h1>
+            <p class="hero-subtitle">Eleve seu jogo a um novo patamar. Precisão, controle e otimizações táticas para amassar nos 1v4 no Free Fire.</p>
+            <a href="https://github.com/koposcript/xtac-kk/releases/download/V1/XtacFF.apk" class="download-button" id="download-link">
+                <span class="icon">🗯</span> Baixar Agora (v1.0 Beta)
+            </a>
+            <p style="font-size: 0.8em; margin-top: 15px; opacity: 0.7;">(Download)</p>
+        </div>
+    </header>
+
+    <section class="features-section">
+        <div class="container-xtac">
+            <h2 class="section-title">Recursos</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="icon">🎯</span>
+                    <h3>Mira</h3>
+                    <p>Assistente de HS e Controle de Recuo Total para tiros perfeitos. A Mira Aprimorada garante que você não perca o alvo.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">🧱</span>
+                    <h3>Defesa Suprema</h3>
+                    <p>Gelo Invertido Automático para surpreender oponentes e Tiro Através do Gel para finalizar quem se esconde.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="icon">⚡</span>
+                    <h3>Performance Xtreme</h3>
+                    <p>Nitidez Máxima, Otimizador de Rede e simulação de Tela Esticada para a melhor experiência visual e de resposta.</p>
+                </div>
+                 <div class="feature-card">
+                    <span class="icon">👁️</span>
+                    <h3>Visão Tática</h3>
+                    <p>Hack da Cerca, Move da tela parada, para você estar sempre um passo à frente dos seus inimigos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container-xtac">
+            <h2 class="section-title">O Que os Compradores Dizem</h2>
+            <div class="features-grid"> <!-- Reutilizando a classe de grid para layout */ -->
+                <div class="testimonial-card">
+                    <q>Compensou, só 2 conto, subi minha taxa de hs para 4%.</q>
+                    <p class="testimonial-author">- ProSniper_77</p>
+                </div>
+                <div class="testimonial-card">
+                    <q>O controle de recuo e o gelo invertido são insanos. XTac mudou meu jogo no CS.</q>
+                    <p class="testimonial-author">- LendaDoCS_BR</p>
+                </div>
+                 <div class="testimonial-card">
+                    <q>Finalmente um app que realmente otimiza a performance sem pesar. A diferença é mt slk</q>
+                    <p class="testimonial-author">- TechGamerX</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container-xtac">
+            <p>&copy; 2025 XTac FF Industries (°C). Todos os direitos reservados.</p>
+            <p>Melhor Inicial do Cenario!</p>
+            <p>O XTac ff tem 76% anti Blacklist .</p>
+            <p><a href="#privacy-simulated">Política de Privacidade </a> | <a href="#terms-simulated">Termos de Uso</a></p>
+        </div>
+    </footer>
+</body>
+</html>
